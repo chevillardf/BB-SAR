@@ -1,0 +1,62 @@
+{% load static %}
+{% load custom_filters %}
+<!-- TODO add style to global, this does not work atm? check when css is call/erase -->
+<style>
+  td {
+      white-space: nowrap;
+  }
+</style>
+<div class="table-responsive">
+  <table id="molsPptiesTable" class="table table-hover datatable">
+    <thead>
+      <tr>
+        {% for header in mols_ppties_headers %}
+        <th scope="col" class="sortable">{{ header|safe }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for mol in mols_ppties_df.itertuples %}
+      <tr>
+        <td>
+          {% if mol.A_id|default:'' %}
+          <a href="{% url 'bb_home' mol.A_id %}" data-toggle="tooltip" data-html="true" title="{{mol.A_id}}"
+            class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.A_id}}.svg'>{{mol.A_id}}</a>
+          {% else %}
+          {% endif %}
+        </td>
+        <td>
+          {% if mol.B_id|default:'' %}
+          <a href="{% url 'bb_home' mol.B_id %}" data-toggle="tooltip" data-html="true" title="{{mol.B_id}}"
+            class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.B_id}}.svg'>{{mol.B_id}}</a>
+          {% else %}
+          {% endif %}
+        </td>
+        <td>
+          {% if mol.C_id|default:'' %}
+          <a href="{% url 'bb_home' mol.C_id %}" data-toggle="tooltip" data-html="true" title="{{mol.C_id}}"
+            class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.C_id}}.svg'>{{mol.C_id}}</a>
+          {% else %}
+          {% endif %}
+        </td>
+        {% if n_bb_tags == 4 %}
+        <td>
+          {% if mol.D_id|default:'' %}
+          <a href="{% url 'bb_home' mol.D_id %}" data-toggle="tooltip" data-html="true" title="{{mol.D_id}}"
+            class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.D_id}}.svg'>{{mol.D_id}}</a>
+          {% endif %}
+        </td>
+        {% endif %}
+        <td class="mol_id_cell">
+          <a href="{% url 'molecule_home' mol.mol_id %}" data-toggle="tooltip" data-html="true" title="{{mol.mol_id}}"
+            class="bb-tooltip-trigger" data-imgsrc='/media/mols/{{project_name}}/{{series_name}}/{{mol.mol_id}}.svg'>{{mol.mol_id}}</a>
+        </td>
+        {% for header in mols_ppties %}
+          <td class="{{ header }}" style="background-color: {{ mol|get_attr:header|color_for_property:header }}">{{ mol|get_attr:header }}</td>
+        {% endfor %}
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

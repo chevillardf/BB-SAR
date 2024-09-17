@@ -1,0 +1,137 @@
+{% load static %}
+
+<!-- Vertical filter bar -->
+<form action="{% url 'molecules_home' %}" method="get">
+  <div>
+    <button type="submit" class="btn btn-primary w-100" id="filterBtn">
+      Filter Molecules <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  <br>
+  <div>
+    <div id="editor" style="width:300px;height:240px;border:solid;border-width:2px;" view-only="false" show-idcode="false" is-fragment="true">
+    </div>
+    <button class="btn btn-primary" type="button" id="getSubmitSmilesBtn" style="display: none;">Search<i class="fa-solid fa-magnifying-glass"></i></button>
+    <input type="hidden" id="smilesInput" name="smiles" value="">
+  </div>
+  <br>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" name="molId" placeholder="Idorsia No" aria-label="Molecule ID">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text mt-2">A</span>
+    <input type="text" class="form-control mt-2" placeholder="A_id" name="A_id">
+    <span class="input-group-text mt-2">B</span>
+    <input type="text" class="form-control mt-2" placeholder="B_id" name="B_id">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text mt-2">C</span>
+    <input type="text" class="form-control mt-2" placeholder="C_id" name="C_id">
+    <span class="input-group-text mt-2">D</span>
+    <input type="text" class="form-control mt-2" placeholder="D_id" name="D_id">
+  </div>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableEC50Filter" name="enableEC50Filter">
+      <label for="filterEC50Inp" class="form-label">EC50 < <span id="filterEC50Display"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="100" id="filterEC50Inp" name="filterEC50">
+    <input type="hidden" id="currentFilterEC50Inp" name="currentFilterEC50" value="{{ currentFilterEC50 }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableHLMFilter" name="enableHLMFilter">
+      <label for="filterHLMInp" class="form-label">HLM < <span id="filterHLMDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="1250" id="filterHLMInp" name="filterHLM">
+    <input type="hidden" id="currentFilterHLMInp" name="currentFilterHLM" value="{{ currentFilterHLM }}">
+  </div>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableMDR1PappABFilter" name="enableMDR1PappABFilter">
+      <label for="filterMDR1PappABInp" class="form-label">MDR1_PappAB > <span id="filterMDR1PappABDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="30" id="filterMDR1PappABInp" name="filterMDR1PappAB">
+    <input type="hidden" id="currentFilterMDR1PappABInp" name="currentFilterMDR1PappAB" value="{{ currentFilterMDR1PappAB }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableMDR1EffluxFilter" name="enableMDR1EffluxFilter">
+      <label for="filterMDR1EffluxInp" class="form-label">MDR1_Efflux < <span id="filterMDR1EffluxDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="100" id="filterMDR1EffluxInp" name="filterMDR1Efflux">
+    <input type="hidden" id="currentFilterMDR1EffluxInp" name="currentFilterMDR1Efflux" value="{{ currentFilterMDR1Efflux }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableSolFaSSIFFilter" name="enableSolFaSSIFFilter">
+      <label for="filterSolFaSSIFInp" class="form-label">Sol_FaSSIF > <span id="filterSolFaSSIFDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="500" id="filterSolFaSSIFInp" name="filterSolFaSSIF">
+    <input type="hidden" id="currentFilterSolFaSSIFInp" name="currentFilterSolFaSSIF" value="{{ currentFilterSolFaSSIF }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableLogDFilter" name="enableLogDFilter">
+      <label for="filterLogDInp" class="form-label">logD < <span id="filterLogDDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="5" id="filterLogDInp" name="filterLogD">
+    <input type="hidden" id="currentFilterLogDInp" name="currentFilterLogD" value="{{ currentFilterLogD }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableDGSHFilter" name="enableDGSHFilter">
+      <label for="filterDGSHInp" class="form-label">dGSH < <span id="filterDGSHDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="2500" id="filterDGSHInp" name="filterDGSH">
+    <input type="hidden" id="currentFilterDGSHInp" name="currentFilterDGSH" value="{{ currentFilterDGSH }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enablePXRFilter" name="enablePXRFilter">
+      <label for="filterPXRInp" class="form-label">PXR_EC<sub>50</sub> > <span id="filterPXRDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="50" id="filterPXRInp" name="filterPXR">
+    <input type="hidden" id="currentFilterPXRInp" name="currentFilterPXR" value="{{ currentFilterPXR }}">
+  </div>
+  <hr>
+  <div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="enableCYPtFilter" name="enableCYPtFilter">
+      <label for="filterCYPtInp" class="form-label">CYP_testo > <span id="filterCYPtDisplay"></span></label>
+    </div>
+    <input type="range" class="form-range" min="0" max="50" id="filterCYPtInp" name="filterCYPt">
+    <input type="hidden" id="currentFilterCYPtInp" name="currentFilterCYPt" value="{{ currentFilterCYPt }}">
+  </div>
+
+</form>
+
+<script>
+  // Define 'editorCtrl' outside to ensure it's available throughout the script
+  var editorCtrl;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    editorCtrl = window.OCL.StructureEditor.createSVGEditor('editor', 1);
+    // Other editor initialization...
+
+    document.getElementById('filterBtn').addEventListener('click', function(event) {
+      // Prevent the default form submission for now
+      event.preventDefault();
+
+      // Retrieve the SMILES from your editor control
+      var smiles = editorCtrl.getSmiles();
+
+      // Set the SMILES to the hidden input
+      document.getElementById('smilesInput').value = smiles;
+
+      // Now, submit the form
+      event.target.form.submit();
+    });
+  });
+</script>

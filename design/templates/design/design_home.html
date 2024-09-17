@@ -1,0 +1,83 @@
+{% extends "projects/base.html" %}
+{% block content %}
+
+<div class="article-metadata">
+  <h1 class="mr-2">Design new compounds</h1>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row mb-3">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Design <i class="fa-solid fa-triangle-exclamation"
+        style="color: #ff3300;" title="Currently the design is supported from one single bb_id. duo is coming, then trio."></i></i>
+      </div>
+      <div class="card-body">
+        <br><br>
+        <form action="{% url 'design_new_mols' %}" method="post" class="w-100">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="input-group mb-3">
+                <span class="input-group-text mt-2">A</span>
+                <input type="text" class="form-control mt-2" placeholder="" name="A_id">
+                <span class="input-group-text mt-2">B</span>
+                <input type="text" class="form-control mt-2" placeholder="" name="B_id">
+                <span class="input-group-text mt-2">C</span>
+                <input type="text" class="form-control mt-2" placeholder="" name="C_id">
+                <span class="input-group-text mt-2">D</span>
+                <input type="text" class="form-control mt-2" placeholder="" name="D_id">
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select Property</div>
+                <select name="property" id="property" class="form-select">
+                  {% for property in properties %}
+                  <option value="{{ property }}">{{ property }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="accuracy_mode">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Accuracy mode <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+                  title="Remove suggestions based on one data point only."></i></label>
+              </div>
+            </div>
+          </div>          
+          <div class="row mb-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              <div class="input-group rounded-0 mt-2">
+                <input type="submit" value="Design new compounds" class="btn btn-primary w-100">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="input-group rounded-0 mt-2">
+                <input type="submit" value="Test existing compounds" class="btn btn-primary w-100 disabled">
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+{% endblock content %}

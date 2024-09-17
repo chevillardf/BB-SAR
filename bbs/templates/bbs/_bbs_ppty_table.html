@@ -1,0 +1,29 @@
+{% load static %}
+{% load custom_filters %}
+
+<table class="table table-hover" id="molsPptyTable">
+  <thead>
+    <tr>
+      <th scope="col">BB_id</th>
+      <th scope="col">Median</th>
+      <th scope="col">Count</th>
+      <th scope="col">duos plot</th>
+      <th scope="col">CV <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="Coef. of Variation. CV = standard deviation / mean. The lower the CV, the lower the level of dispersion around the mean."></i>
+      </th>
+      <th scope="col">Score <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="Score = Median +/- CV. This score is particularly useful to identify BBs that not only have a desirable median value but also a consistent distribution around that value."></i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bb in bbs_ppties_df.itertuples %}
+    <tr>
+      <td><a href="{% url 'bb_home' bb.bb_id %}" data-toggle="tooltip" data-html="true" title="{{ bb.bb_id }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ bb.bb_id }}.svg'>{{ bb.bb_id }}</a></td>
+      <td style="background-color: {{ bb.median|color_for_property:property }};">{{bb.median|floatformat:2}}</td>
+      <td>{{bb.count|floatformat:0}}</td>
+      <td><a href="{% url 'display_duo_swarmPlot' bb.bb_id property %}">Swarm Plot</a></td>
+      <td>{{bb.cv|floatformat:2}}</td>
+      <td>{{bb.score|floatformat:2}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

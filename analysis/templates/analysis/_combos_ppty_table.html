@@ -1,0 +1,41 @@
+{% load static %}
+{% load custom_filters %}
+
+<table class="table table-hover" id="molsPptyTable">
+  <thead>
+    <tr>
+      <th scope="col">Combo</th>
+      <th scope="col">Median</th>
+      <th scope="col">Count</th>
+      <th scope="col">CV <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="Coef. of Variation. CV = standard deviation / mean. 
+        The lower the CV, the lower the level of dispersion 
+        around the mean. "></i></th>
+      <th scope="col">Score <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="Score = Median +/- CV.
+        This score is particularly useful to identify BBs
+         that not only have a desirable median value but 
+         also a consistent distribution around that value."></i></th>
+      <th>Molecules containing combos</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in bb_combo_df.itertuples %}
+      <tr>
+        <td>
+        {% if b.bbs_combo|length == 3 %}
+          <a href="{% url 'bb_home' b.bbs_combo|format_bbs_combo:0 %}" data-toggle="tooltip" data-html="true" title="{{ b.bbs_combo|format_bbs_combo:0 }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ b.bbs_combo|format_bbs_combo:0 }}.svg'>{{ b.bbs_combo|format_bbs_combo:0 }}</a>,
+          <a href="{% url 'bb_home' b.bbs_combo|format_bbs_combo:1 %}" data-toggle="tooltip" data-html="true" title="{{ b.bbs_combo|format_bbs_combo:1 }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ b.bbs_combo|format_bbs_combo:1 }}.svg'>{{ b.bbs_combo|format_bbs_combo:1 }}</a>,
+          <a href="{% url 'bb_home' b.bbs_combo|format_bbs_combo:2 %}" data-toggle="tooltip" data-html="true" title="{{ b.bbs_combo|format_bbs_combo:2 }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ b.bbs_combo|format_bbs_combo:2 }}.svg'>{{ b.bbs_combo|format_bbs_combo:2 }}</a>
+        {% elif b.bbs_combo|length == 2 %}
+          <a href="{% url 'bb_home' b.bbs_combo|format_bbs_combo:0 %}" data-toggle="tooltip" data-html="true" title="{{ b.bbs_combo|format_bbs_combo:0 }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ b.bbs_combo|format_bbs_combo:0 }}.svg'>{{ b.bbs_combo|format_bbs_combo:0 }}</a>,
+          <a href="{% url 'bb_home' b.bbs_combo|format_bbs_combo:1 %}" data-toggle="tooltip" data-html="true" title="{{ b.bbs_combo|format_bbs_combo:1 }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ b.bbs_combo|format_bbs_combo:1 }}.svg'>{{ b.bbs_combo|format_bbs_combo:1 }}</a>
+        {% endif %}
+        </td>
+        <td style="background-color: {{ b.median|color_for_property:property }};">{{b.median|floatformat:2}}</td>
+        <td>{{b.count}}</td>
+        <td>{{b.cv|floatformat:2}}</td>
+        <td>{{b.score|floatformat:2}}</td>
+        <td><a href="{% url 'molecules_home' %}?{{ b.bbs_combo|to_query_params }}">Show Molecules</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

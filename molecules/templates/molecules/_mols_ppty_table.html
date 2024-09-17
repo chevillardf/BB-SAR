@@ -1,0 +1,76 @@
+{% load static %}
+{% load custom_filters %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">A_id</th>
+      <th scope="col">B_id</th>
+      <th scope="col">C_id</th>
+      {% if n_bb_tags == 4 %}
+      <th scope="col">D_id</th>
+      {% endif %}
+      <th scope="col">Median</th>
+      <th scope="col">Count</th>
+      <th scope="col">CV <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+          title="Coef. of Variation. CV = standard deviation / mean. The lower the CV, the lower the level of dispersion around the mean. "></i>
+      </th>
+      <th scope="col">Score <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+          title="Score = Median +/- CV. This score is particularly useful to identify BBs that not only have a desirable median value but also a consistent distribution around that value."></i>
+      </th>
+      <th scope="col">Idorsia No</th>
+      <th scope="col">{{property}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for mol in mols_ppty_df.itertuples %}
+    <tr>
+      <td>
+        {% if mol.A_id|default:'' %}
+        <a href="{% url 'bb_home' mol.A_id %}" data-toggle="tooltip" data-html="true" title="{{mol.A_id}}"
+          class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.A_id}}.svg'>{{mol.A_id}}</a>
+        {% else %}
+        {% endif %}
+      </td>
+      <td>
+        {% if mol.B_id|default:'' %}
+        <a href="{% url 'bb_home' mol.B_id %}" data-toggle="tooltip" data-html="true" title="{{mol.B_id}}"
+          class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.B_id}}.svg'>{{mol.B_id}}</a>
+        {% else %}
+        {% endif %}
+      </td>
+      <td>
+        {% if mol.C_id|default:'' %}
+        <a href="{% url 'bb_home' mol.C_id %}" data-toggle="tooltip" data-html="true" title="{{mol.C_id}}"
+          class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.C_id}}.svg'>{{mol.C_id}}</a>
+        {% else %}
+        {% endif %}
+      </td>
+      {% if n_bb_tags == 4 %}
+      <td>
+        {% if mol.D_id|default:'' %}
+        <a href="{% url 'bb_home' mol.D_id %}" data-toggle="tooltip" data-html="true" title="{{mol.D_id}}"
+          class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{mol.D_id}}.svg'>{{mol.D_id}}</a>
+        {% else %}
+        {% endif %}
+      </td>
+      {% endif %}
+      <td style="background-color: {{ mol.median|color_for_property:property }};">{{mol.median|floatformat:2}}</td>
+      <td>{{mol.count|floatformat:0}}</td>
+      <td>{{mol.cv|floatformat:2}}</td>
+      <td>{{mol.score|floatformat:2}}</td>
+      <td>
+        {% if mol.mol_id %}
+        <a href="{% url 'molecule_home' mol.mol_id %}" data-toggle="tooltip" data-html="true" title="{{ mol.mol_id }}"
+          class="mol-tooltip-trigger" data-imgsrc='/media/mols/{{project_name}}/{{series_name}}/{{ mol.mol_id }}.svg'>
+          {{ mol.mol_id }}
+        </a>
+        {% else %}
+        {{ mol.mol_id }}
+        {% endif %}
+      </td>
+      <td style="background-color: {{ mol.ppty_value|color_for_property:property }};">{{ mol.ppty_value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

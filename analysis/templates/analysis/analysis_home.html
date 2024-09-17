@@ -1,0 +1,172 @@
+{% extends "projects/base.html" %}
+{% block content %}
+
+<div class="article-metadata">
+  <h1 class="mr-2">Explore Properties</h1>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Generate BoxPlot <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+          title="Useful to identify which bb_id from a given bb_tag (A,B,C,D) may have an impact on a property."></i>
+      </div>
+      <div class="card-body">
+        <br><br>
+        <form action="{% url 'display_bbs_ppty_boxPlot' %}" method="post" class="w-100">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select BB tag&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <select name="bb_tag" id="bb_tag" class="form-select">
+                  {% for bb_tag in bb_tags %}
+                  <option value="{{ bb_tag }}">{{ bb_tag }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select Property</div>
+                <select name="property" id="property" class="form-select">
+                  {% for property in properties %}
+                  <option value="{{ property }}">{{ property }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Min data points per BB</div>
+                <select name="min_data_points" id="min_data_points" class="form-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <input type="submit" value="Generate Box Plot" class="btn btn-primary w-100">
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br><br>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Display all Combos for a property <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+          title="Combo = a combination of several bb_id:
+        - Duo: all molecules containing two distinct bb_id e.g. A02, B53
+        - Trio: all molecules containing three distinct bb_id e.g. A02, B53, C10
+        
+        This can be useful to identify which combos have negative/positive impact on a given property. Combos should be more accurate than single bb_id insights."></i>
+      </div>
+      <div class="card-body">
+        <br><br>
+        <form action="{% url 'generate_combos' %}" method="post" class="w-100">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select Combos&nbsp;</div>
+                <select name="combo" id="combo" class="form-select">
+                  {% for combo in combos %}
+                  <option value="{{ combo }}">{{ combo }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select Property</div>
+                <select name="property" id="property" class="form-select">
+                  {% for property in properties %}
+                  <option value="{{ property }}">{{ property }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <input type="submit" value="Display all combos" class="btn btn-primary w-100">
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br><br>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Compare MMPs <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+          title="TODO: fill this"></i>
+      </div>
+      <div class="card-body">
+        <br><br>
+        <form action="{% url 'generate_mmps' %}" method="post" class="w-100">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select BB ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <input type="text" name="bb_id" id="bb_id" class="form-control" placeholder="BB_id">
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <div class="input-group-text">Select Property</div>
+                <select name="property" id="property" class="form-select">
+                  {% for property in properties %}
+                  <option value="{{ property }}">{{ property }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="input-group rounded-0 mt-2">
+                <input type="submit" value="Compare MMPs" class="btn btn-primary w-100">
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br><br>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

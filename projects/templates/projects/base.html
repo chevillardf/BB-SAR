@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'projects/main.css' %}">
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.jsdelivr.net/npm/openchemlib@8.7.2/dist/openchemlib-full.pretty.js"></script>
+  {% if title %}
+  <title>BB-SAR - {{ title }}</title>
+  {% else %}
+  <title>BB-SAR</title>
+  {% endif %}
+
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle navbar-brand-dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if current_series %}
+                  {{ current_series.project.project_name }} - {{ current_series.series_name }}
+                {% else %}
+                  Select Project - Series
+                {% endif %}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for serie in series %}
+                <li><a class="dropdown-item" href="{% url 'set_series' series_id=serie.id %}">{{ serie.project.project_name }} - {{ serie.series_name }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'molecules_home' %}">Molecules</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'bbs_home' %}">BBs</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'analysis_home' %}">Analysis</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'design_home' %}">Design</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+  </header>
+
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </main>
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Misc-->
+  <script src="https://kit.fontawesome.com/00f0d79f9e.js" crossorigin="anonymous"></script>
+  <!-- JS -->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <!-- JS misc -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/plug-ins/1.13.6/sorting/natural.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Initialize tooltips
+      $('[data-toggle="tooltip"]').tooltip();
+
+      // Tooltip hover functionality for BBs and Molecules
+      function setupTooltip(triggerClass, imgWidth) {
+        $(triggerClass).hover(
+          function () {
+            var imgSrc = $(this).data('imgsrc');
+            var tooltip = '<img src="' + imgSrc + '" alt="BB" width="' + imgWidth + '">';
+            $(this).attr('title', '').tooltip('dispose').tooltip({ html: true, title: tooltip }).tooltip('show');
+          },
+          function () {
+            $(this).attr('title', $(this).data('original-title'));
+          }
+        );
+      }
+      setupTooltip('.bb-tooltip-trigger', 185);
+      setupTooltip('.mol-tooltip-trigger', 350);
+
+      // DataTables initialization
+      $.extend($.fn.dataTable.ext.order, {
+        "natural-asc": function (a, b) {
+          return $.fn.dataTable.ext.type.natural(a, b) * -1;
+        },
+        "natural-desc": function (a, b) {
+          return $.fn.dataTable.ext.type.natural(a, b);
+        }
+      });
+
+      var dataTableOptions = {
+        "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+        columnDefs: [{ type: 'natural', targets: '_all' }],
+        "order": [[0, 'desc']]
+      };
+
+      $('#molsPptyTable, #molsPptiesTable').DataTable(dataTableOptions);
+
+      function setupSlider(sliderId, outputId, hiddenInputId, initialValue) {
+        var slider = $(sliderId);
+        var output = $(outputId);
+        var hiddenInput = $(hiddenInputId);
+
+        // Update display and hidden input on slider input
+        slider.on('input', function () {
+          var value = $(this).val();
+          output.text(value);
+          hiddenInput.val(value);
+        });
+
+        // Initialize with the current value from Django context or default
+        slider.val(initialValue).trigger('input');
+      }
+
+      // Initialize the slider filters
+      setupSlider("#filterBBcountInp", "#filterBBcountDisplay", "#currentFilterBBcountInp", "{{ currentFilterBBcount|default_if_none:'1' }}");
+      setupSlider("#filterEC50Inp", "#filterEC50Display", "#currentFilterEC50Inp", "{{ currentFilterEC50|default_if_none:'100' }}");
+      setupSlider("#filterHLMInp", "#filterHLMDisplay", "#currentFilterHLMInp", "{{ currentFilterHLM|default_if_none:'1250' }}");
+      setupSlider("#filterMDR1PappABInp", "#filterMDR1PappABDisplay", "#currentFilterMDR1PappABInp", "{{ currentFilterMDR1PappAB|default_if_none:'0' }}");
+      setupSlider("#filterMDR1EffluxInp", "#filterMDR1EffluxDisplay", "#currentFilterMDR1EffluxInp", "{{ currentFilterMDR1Efflux|default_if_none:'100' }}");
+      setupSlider("#filterSolFaSSIFInp", "#filterSolFaSSIFDisplay", "#currentFilterSolFaSSIFInp", "{{ currentFilterSolFaSSIF|default_if_none:'0' }}");
+      setupSlider("#filterLogDInp", "#filterLogDDisplay", "#currentFilterLogDInp", "{{ currentFilterLogD|default_if_none:'5' }}");
+      setupSlider("#filterDGSHInp", "#filterDGSHDisplay", "#currentFilterDGSHInp", "{{ currentFilterDGSH|default_if_none:'2500' }}");
+      setupSlider("#filterPXRInp", "#filterPXRDisplay", "#currentFilterPXRInp", "{{ currentFilterPXR|default_if_none:'0' }}");
+      setupSlider("#filterCYPtInp", "#filterCYPtDisplay", "#currentFilterCYPtInp", "{{ currentFilterCYPt|default_if_none:'0' }}");
+
+    });
+  </script>
+  <!--
+  <script src="{% static 'projects/script.js' %}"></script>
+  -->
+
+</body>
+
+</html>

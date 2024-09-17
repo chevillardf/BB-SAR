@@ -1,0 +1,76 @@
+{% extends "projects/base.html" %}
+{% block content %}
+
+{% for project in projects %}
+  {% for series in project.series_set.all %}
+  <article class="media content-section">
+    <div class="media-body">
+      <h2>{{ series.project }} - {{ series.series_name }}</h2>
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <div class="card">
+            <img src="/media/mols/{{ series.project }}/{{ series.series_name }}/{{ series.project }}_{{ series.series_name }}.png" width="100%">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="col-md-12">
+            <div class="card text-center">
+              <h1 class="display-5"><b>{{ series.n_mols }}</b></h1>
+              <h5 class="display-7">Compounds</h5>
+            </div>
+          </div>
+          <br>
+          <div class="col-md-12">
+            <div class="card text-center">
+              <h1 class="display-5"><b>{{ series.n_bbs }}</b></h1>
+              <h5 class="display-7">BBs</h5>
+            </div>
+          </div>
+          <br>
+          <div class="col-md-12">
+            <div class="card text-center">
+              <h1 class="display-5"><b>{{ series.series_bbsar_coverage }} %</b></h1>
+              <h5 class="display-7">Coverage <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="Coverage = molecules portion in the series that were successfully deconstructed into BBs. Failed deconstructed molecules will still appears, but without any BBs associated (thus not appearing in BBs statistics)."></i></h5>
+            </div>
+          </div>
+        </div>
+        <!-- 3rd column -->
+        <div class="col-md-3">
+          <div class="col-md-12">
+            <div class="card text-center" style="color: #0093dd;">
+              <h1 class="display-5"><b>{{ series.n_A }}</b></h1>
+              <h5 class="display-7">A</h5>
+            </div>
+          </div>
+          <br>
+          <div class="col-md-12">
+            <div class="card text-center" style="color: #3e931f;">
+              <h1 class="display-5"><b>{{ series.n_C }}</b></h1>
+              <h5 class="display-7">C</h5>
+            </div>
+          </div>
+        </div>
+        <!-- 3rd column -->
+        <div class="col-md-3">
+          <div class="col-md-12">
+            <div class="card text-center" style="color: #ff3300;">
+              <h1 class="display-5"><b>{{ series.n_B }}</b></h1>
+              <h5 class="display-7">B</h5>
+            </div>
+          </div>
+          <br>
+          <div class="col-md-12">
+            <div class="card text-center" style="color: #541471;">
+              <h1 class="display-5"><b>{{ series.n_D }}</b></h1>
+              <h5 class="display-7">D</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="{% url 'set_series' series_id=series.id %}">Select</a> this series for Analysis & Design.<br>
+      <small class="text-muted">Last updated: {{ series.date_updated|date:"F d, Y" }} @ {{ series.date_updated|date:"H:i" }}</small>
+    </div>
+  </article>
+  {% endfor %}
+{% endfor %}
+{% endblock content %}

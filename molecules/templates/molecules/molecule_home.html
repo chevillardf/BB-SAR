@@ -1,0 +1,64 @@
+{% extends "projects/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="article-metadata">
+  <h1 class="mr-2">{{mol.mol_id}} <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="DMPK status: {{mol.DMPK_status}}"></i> {% if mol.mol_flag %} <i class="fa-solid fa-triangle-exclamation"
+      style="color: #ff3300;" title="{{mol.mol_flag}}"></i>{% endif %}
+  </h1>
+</div>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body" style="position: relative;">
+        <img src="/media/mols/{{project_name}}/{{series_name}}/{{mol.mol_id}}.svg" width="100%">
+        {% if mol.mol_flag %}
+        <div style="position: absolute; top: 1px; left: 1px;">
+          <p style="background-color: rgba(255, 173, 153, 1); padding: 5px; border-radius: 5px;">
+            <b>{{mol.mol_flag}}</b>
+          </p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+    <div class="col-md-6">
+      {% include 'molecules/_ppties_mol_table.html' %}
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    {% include 'molecules/_mol_bbs_cards.html' %}
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="mr-2">Analogs <i class="fa-solid fa-circle-info" style="color: #3e931f;"
+          title="Analog = 3 shared BBs (or only 1 BB differs) with the reference molecule."></i></h3>
+    </div>
+  </div>
+  <hr>
+  <ul class="nav nav-tabs" id="moleculesTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="molListView-tab" data-bs-toggle="tab" href="#molListView" role="tab"
+        aria-controls="molListView" aria-selected="true">List View</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="molGridView-tab" data-bs-toggle="tab" href="#molGridView" role="tab" aria-controls="molGridView"
+        aria-selected="false">Grid View</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="moleculesTabsContent">
+    <div class="tab-pane fade show active" id="molListView" role="tabpanel" aria-labelledby="molListView-tab">
+      {% include 'molecules/_mols_ppties_table.html' with mols_ppties_headers=mols_ppties_headers%}
+    </div>
+    <div class="tab-pane fade" id="molGridView" role="tabpanel" aria-labelledby="molGridView-tab">
+      {% include 'molecules/_mols_ppties_grid.html' with mols_ppties_headers=mols_ppties_headers%}
+    </div>
+  </div>
+  <!-- TODO: fix table so rows are filled automatically like columns headers -->
+
+  {% endblock content %}
+
+  <!-- {% include 'molecules/_mols_ppties_table.html' with mols_ppties_headers=mols_ppties_headers %} -->

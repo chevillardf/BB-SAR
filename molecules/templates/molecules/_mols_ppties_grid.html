@@ -1,0 +1,43 @@
+{% load static %}
+{% load custom_filters %}
+
+<div class="container-fluid">
+  <div class="row">
+    {% with ppty=mols_ppties|get_first %}
+    {% for mol in mols %}
+      {% if forloop.counter <= 50 %}
+        <div class="col-md-3 col-sm-3">
+          <img src="/media/mols/{{project_name}}/{{series_name}}/{{mol.mol_id}}.svg" class="img-fluid" alt="{{mol.mol_id}}" title="{{mol.mol_id}}">
+          <center style="background-color: {{ mol.EC50_main|color_for_property:ppty }}"><a href="{% url 'molecule_home' mol.mol_id %}">{{mol.mol_id}}</a> EC<sub>50</sub>={{ mol.EC50_main}}</center>
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+          </div>
+          <div class="row">
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% endwith %}
+  </div>
+</div>
+
+
+<!-- This code works, but for some reasons EC50main does not appear when filtering mols from bb_id. TODO: fix this
+<div class="container-fluid">
+  <div class="row">
+    {% with ppty=mols_ppties|get_first %}
+    {% for mol in mols %}
+      {% if forloop.counter <= 50 %}
+        <div class="col-md-3 col-sm-3">
+          <img src="/media/mols/{{project_name}}/{{series_name}}/{{mol.mol_id}}.svg" class="img-fluid" alt="{{mol.mol_id}}" title="{{mol.mol_id}}">
+          <center style="background-color: {{ mol|get_attr:ppty|color_for_property:ppty }}"><a href="{% url 'molecule_home' mol.mol_id %}">{{mol.mol_id}}</a> EC<sub>50</sub>={{ mol|get_attr:ppty}}</center>
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+          </div>
+          <div class="row">
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% endwith %}
+  </div>
+</div>
+-->

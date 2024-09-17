@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="container-fluid">
+  <div class="row">
+    {% for b in bbs %}
+      <div class="col-md-2 col-sm-2">
+        <img src="/media/bbs/{{project_name}}/{{series_name}}/{{ b.bb_id }}.svg" class="img-fluid" alt="{{ b.bb_id }}" title="{{ b.bb_id }}">
+        <center><a href="{% url 'bb_home' b.bb_id %}">{{ b.bb_id }}</a> (n = {{b.count}})</center>
+      </div>
+      {% if forloop.counter|divisibleby:6 %}
+        </div>
+        <hr>
+        <div class="row">
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+<!--
+<div class="row mb-3">
+  {% for b in bbs %}
+  <div class="col-md-2 bb-card" data-bb-id="{{ b.bb_id }}">
+    <div class="card mb-3">
+      <div class="card-body">
+        <img src="/media/bbs/{{b.bb_id}}.svg" class="card-img-top" alt="{{b.bb_id}}">
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <h5 class="card-title">
+          <a href="{% url 'bb_home' b.bb_id %}">{{b.bb_id}}</a>
+        </h5> <span>n = {{b.count}}</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+-->

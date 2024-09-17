@@ -1,0 +1,205 @@
+{% load static %}
+{% load custom_filters %}
+
+{% if n_bb_tags == 4 %}
+<div class="col-md-3">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.0.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.0.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.0.EC50_main_count}}. 
+        Rank = {{bbs.0.EC50_main_rank}} / {{n_A}}.">{{bbs.0.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.HLM_median|color_for_property:'HLM'}};" title="HLM median.
+        Count: {{bbs.0.HLM_count}}">{{bbs.0.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.MDR1_PappAB_median|color_for_property:'MDR1_PappAB'}};" title="MDR1_PappAB median.
+        Count: {{bbs.0.MDR1_PappAB_count}}">{{bbs.0.MDR1_PappAB_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.MDR1_efflux_median|color_for_property:'MDR1_efflux'}};" title="MDR1_efflux median.
+        Count: {{bbs.0.MDR1_efflux_count}}">{{bbs.0.MDR1_efflux_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.sol_FaSSIF_median|color_for_property:'sol_FaSSIF'}};" title="sol_FaSSIF median.
+        Count: {{bbs.0.sol_FaSSIF_count}}">{{bbs.0.sol_FaSSIF_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.0.logD_count}}">{{bbs.0.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.0.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.0.bb_id %}">{{bbs.0.bb_id}}</a>
+      (n = {{bbs.0.count}})
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.1.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.1.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.1.EC50_main_count}}. 
+        Rank = {{bbs.1.EC50_main_rank}} / {{n_B}}.">{{bbs.1.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.HLM_median|color_for_property:'HLM'}};" title="HLM median.
+        Count: {{bbs.1.HLM_count}}">{{bbs.1.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.MDR1_PappAB_median|color_for_property:'MDR1_PappAB'}};" title="MDR1_PappAB median.
+        Count: {{bbs.1.MDR1_PappAB_count}}">{{bbs.1.MDR1_PappAB_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.MDR1_efflux_median|color_for_property:'MDR1_efflux'}};" title="MDR1_efflux median.
+        Count: {{bbs.1.MDR1_efflux_count}}">{{bbs.1.MDR1_efflux_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.sol_FaSSIF_median|color_for_property:'sol_FaSSIF'}};" title="sol_FaSSIF median.
+        Count: {{bbs.1.sol_FaSSIF_count}}">{{bbs.1.sol_FaSSIF_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.1.logD_count}}">{{bbs.1.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.1.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.1.bb_id %}">{{bbs.1.bb_id}}</a>
+      (n = {{bbs.1.count}})
+      {% if bbs.1.bb_flag %} <i class="fa-solid fa-triangle-exclamation"
+      style="color: #ff3300;" title="{{bbs.1.bb_flag}}"></i>{% endif %}
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.2.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.2.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.2.EC50_main_count}}. 
+        Rank = {{bbs.2.EC50_main_rank}} / {{n_C}}.">{{bbs.2.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.HLM_median|color_for_property:'HLM'}};" title="HLM median.
+        Count: {{bbs.2.HLM_count}}">{{bbs.2.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.MDR1_PappAB_median|color_for_property:'MDR1_PappAB'}};" title="MDR1_PappAB median.
+        Count: {{bbs.2.MDR1_PappAB_count}}">{{bbs.2.MDR1_PappAB_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.MDR1_efflux_median|color_for_property:'MDR1_efflux'}};" title="MDR1_efflux median.
+        Count: {{bbs.2.MDR1_efflux_count}}">{{bbs.2.MDR1_efflux_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.sol_FaSSIF_median|color_for_property:'sol_FaSSIF'}};" title="sol_FaSSIF median.
+        Count: {{bbs.2.sol_FaSSIF_count}}">{{bbs.2.sol_FaSSIF_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.2.logD_count}}">{{bbs.2.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.2.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.2.bb_id %}">{{bbs.2.bb_id}}</a>
+      (n = {{bbs.2.count}})
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.3.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.3.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.3.EC50_main_count}}. 
+        Rank = {{bbs.3.EC50_main_rank}} / {{n_D}}.">{{bbs.3.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.3.HLM_median|color_for_property:'HLM'}};" title="HLM median.
+        Count: {{bbs.3.HLM_count}}">{{bbs.3.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.3.MDR1_PappAB_median|color_for_property:'MDR1_PappAB'}};" title="MDR1_PappAB median.
+        Count: {{bbs.3.MDR1_PappAB_count}}">{{bbs.3.MDR1_PappAB_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.3.MDR1_efflux_median|color_for_property:'MDR1_efflux'}};" title="MDR1_efflux median.
+        Count: {{bbs.3.MDR1_efflux_count}}">{{bbs.3.MDR1_efflux_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.3.sol_FaSSIF_median|color_for_property:'sol_FaSSIF'}};" title="sol_FaSSIF median.
+        Count: {{bbs.3.sol_FaSSIF_count}}">{{bbs.3.sol_FaSSIF_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.3.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.3.logD_count}}">{{bbs.3.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.3.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.3.bb_id %}">{{bbs.3.bb_id}}</a>
+      (n = {{bbs.3.count}})
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.0.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.0.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.0.EC50_main_count}}. 
+        Rank = {{bbs.0.EC50_main_rank}} / {{n_A}}.">{{bbs.0.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.HLM_median|color_for_property:'HLM'}};" 
+        title="HLM median. 
+        Count: {{bbs.0.HLM_count}} 
+        Rank = {{bbs.0.HLM_rank}} / {{n_A}}">{{bbs.0.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.CYP_testo_median|color_for_property:'CYP_testo'}};" title="CYP_testo median.
+        Count: {{bbs.0.CYP_testo_count}}">{{bbs.0.CYP_testo_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.OX1_IP1_EC50_median|color_for_property:'EC50_main'}};" title="OX1_IP1_EC50 median.
+        Count: {{bbs.0.OX1_IP1_EC50_count}}">{{bbs.0.OX1_IP1_EC50_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.ratio_hOX1R_hOX2R_median|color_for_property:'ratio_hOX1R_hOX2R'}};" title="ratio_hOX1R_hOX2R median.
+        Count: {{bbs.0.ratio_hOX1R_hOX2R_count}}">{{bbs.0.ratio_hOX1R_hOX2R_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.0.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.0.logD_count}}">{{bbs.0.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.0.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.0.bb_id %}">{{bbs.0.bb_id}}</a>
+      (n = {{bbs.0.count}})
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.1.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.1.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.1.EC50_main_count}}. 
+        Rank = {{bbs.1.EC50_main_rank}} / {{n_B}}.">{{bbs.1.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.HLM_median|color_for_property:'HLM'}};" 
+        title="HLM median. 
+        Count: {{bbs.1.HLM_count}} 
+        Rank = {{bbs.1.HLM_rank}} / {{n_B}}.">{{bbs.1.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.CYP_testo_median|color_for_property:'CYP_testo'}};" title="CYP_testo median.
+        Count: {{bbs.1.CYP_testo_count}}">{{bbs.1.CYP_testo_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.OX1_IP1_EC50_median|color_for_property:'EC50_main'}};" title="OX1_IP1_EC50 median.
+        Count: {{bbs.1.OX1_IP1_EC50_count}}">{{bbs.1.OX1_IP1_EC50_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.ratio_hOX1R_hOX2R_median|color_for_property:'ratio_hOX1R_hOX2R'}};" title="ratio_hOX1R_hOX2R median.
+        Count: {{bbs.1.ratio_hOX1R_hOX2R_count}}">{{bbs.1.ratio_hOX1R_hOX2R_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.1.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.1.logD_count}}">{{bbs.1.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.1.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.1.bb_id %}">{{bbs.1.bb_id}}</a>
+      (n = {{bbs.1.count}})
+      {% if bbs.1.bb_flag %} <i class="fa-solid fa-triangle-exclamation"
+      style="color: #ff3300;" title="{{bbs.1.bb_flag}}"></i>{% endif %}
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      {% if bbs.2.bb_id|default:'' %}
+      <div class="row g-1">
+        <div class="col-2 text-center" style="background-color: {{bbs.2.EC50_main_median|color_for_property:'EC50_main'}};" title="EC50_main median.
+        Count: {{bbs.2.EC50_main_count}}. 
+        Rank = {{bbs.2.EC50_main_rank}} / {{n_C}}.">{{bbs.2.EC50_main_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.HLM_median|color_for_property:'HLM'}};" 
+        title="HLM median. 
+        Count: {{bbs.2.HLM_count}} 
+        Rank = {{bbs.2.HLM_rank}} / {{n_C}}">{{bbs.2.HLM_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.CYP_testo_median|color_for_property:'CYP_testo'}};" title="CYP_testo median.
+        Count: {{bbs.2.CYP_testo_count}}">{{bbs.2.CYP_testo_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.OX1_IP1_EC50_median|color_for_property:'EC50_main'}};" title="OX1_IP1_EC50 median.
+        Count: {{bbs.2.OX1_IP1_EC50_count}}">{{bbs.2.OX1_IP1_EC50_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.ratio_hOX1R_hOX2R_median|color_for_property:'ratio_hOX1R_hOX2R'}};" title="ratio_hOX1R_hOX2R median.
+        Count: {{bbs.2.ratio_hOX1R_hOX2R_count}}">{{bbs.2.ratio_hOX1R_hOX2R_median}}</div>
+        <div class="col-2 text-center" style="background-color: {{bbs.2.logD_median|color_for_property:'logD'}};" title="logD median.
+        Count: {{bbs.2.logD_count}}">{{bbs.2.logD_median}}</div>
+      </div>
+      <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bbs.2.bb_id}}.svg" width="100%">
+      <a href="{% url 'bb_home' bbs.2.bb_id %}">{{bbs.2.bb_id}}</a>
+      (n = {{bbs.2.count}})
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}

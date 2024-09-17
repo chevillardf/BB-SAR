@@ -1,0 +1,50 @@
+{% extends "projects/base.html" %}
+{% block content %}
+{% load custom_filters %}
+<div class="article-metadata">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <a href="{% url 'bb_home' bb_id %}"><img src="/media/bbs/{{project_name}}/{{series_name}}/{{bb_id}}.svg" width="100%"></a>
+    </div>
+    <div class="col-md-10">
+      <br>
+      <h1 class="mr-2">{{bb_id}}: Summary of all {{property}} MMPs</h1>
+    </div>
+  </div>
+</div>
+<div class="media-body">
+  <div class="table-responsive">
+    <table class="table table-hover" id="molsPptiesTable">
+      <!-- TODO: create template for this-->
+      <thead>
+        <tr>
+          <th scope="col">bb_id</th>
+          <th scope="col">MMPs_count</th>
+          <th scope="col">Fold increase (mean)</th>
+          <th scope="col">mmps_improving_ppty (n)</th>
+          <th scope="col">mmps_improving_ppty (%)</th>
+          <th scope="col">MMPs plot</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for b in df.itertuples %}
+          <tr>
+            <td><a href="{% url 'bb_home' b.bb_id %}" data-toggle="tooltip" data-html="true" title="{{ b.bb_id }}" class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{ b.bb_id }}.svg'>{{ b.bb_id }}</a></td>
+            <td style="background-color: {{ b.n_mmps|color_for_property:'bb_count' }};">{{b.n_mmps}}</td>
+            <td>{{b.mean}}</td>
+            <td>{{b.n_positive_mmps}}</td>
+            <td style="background-color: {{ b.ratio_positive_mmps|color_for_property:'improvement_ratio' }};">{{b.ratio_positive_mmps}}</td>
+            <td><a href="{% url 'get_mmps_ppty_relplot' %}?property={{property}}&bb1_id={{ bb_id }}&bb2_id={{ b.bb_id }}">View MMPs Plot</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!--
+  <i class="fa-solid fa-circle-info" style="color: #3e931f;" title="MMPs count which increase the property values when compared to {{bb_id}}"></i>
+-->

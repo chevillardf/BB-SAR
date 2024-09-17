@@ -1,0 +1,16 @@
+# --- Update Models ------------------------------------------------------------
+
+# python manage.py shell
+# exec(open('./data/update_Molecule_Model.py').read())
+
+# --- PROJECT ------------------------------------------------------------------
+
+import json
+from projects.models import Project
+
+with open('projects.json') as f:
+    proj_json = json.load(f)
+
+for p in proj_json:
+    p = Project(target=p['target'], series=p['series'], property=p['property'], n_mols=p['n_mols'])
+    p.save()

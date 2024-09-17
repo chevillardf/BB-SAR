@@ -1,0 +1,45 @@
+{% extends "projects/base.html" %}
+{% load custom_filters %}
+{% block content %}
+
+<div class="article-metadata">
+  <h1 class="mr-2">SwarmPlot of all <i>duos</i> containing {{bb_id}} </h1>
+</div>
+<div class="media-body">
+  <div class="row mb-3">
+    {% for bb_tag in bb_duo_tags %}
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <img src="/media/plots/swarmplot_duo_{{bb_tag}}.svg" width="100%">
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <h3 class="mr-2">Molecules Containing {{bb_id}}</h3>
+        <hr>
+        <ul class="nav nav-tabs" id="moleculesTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="molListView-tab" data-bs-toggle="tab" href="#molListView" role="tab"
+              aria-controls="molListView" aria-selected="true">List View</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="molGridView-tab" data-bs-toggle="tab" href="#molGridView" role="tab" aria-controls="molGridView"
+              aria-selected="false">Grid View</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="moleculesTabsContent">
+          <div class="tab-pane fade show active" id="molListView" role="tabpanel" aria-labelledby="molListView-tab">
+            {% include 'molecules/_mols_ppties_table.html' %}
+          </div>
+          <div class="tab-pane fade" id="molGridView" role="tabpanel" aria-labelledby="molGridView-tab">
+            {% include 'molecules/_mols_ppties_grid.html' %}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

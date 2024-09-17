@@ -1,0 +1,56 @@
+{% extends "projects/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+  <div class="article-metadata">
+    <h1 class="mr-2">{{bb.bb_id}} {% if bb.bb_flag %} <i class="fa-solid fa-triangle-exclamation"
+      style="color: #ff3300;" title="{{bb.bb_flag}}"></i>{% endif %}</h1>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <img src="/media/bbs/{{project_name}}/{{series_name}}/{{bb.bb_id}}.svg" width="100%">
+        </div>
+      </div>
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <h2>{{bb.count}}</h2>
+          Molecules are built with this BB
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      {% include 'bbs/_ppties_bb_table.html' %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="mr-2">Molecules containing {{bb.bb_id}} ({{bb.count}})</h3>
+    </div>
+  </div>
+  <hr>
+  <ul class="nav nav-tabs" id="moleculesTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="molListView-tab" data-bs-toggle="tab" href="#molListView" role="tab"
+        aria-controls="molListView" aria-selected="true">List View</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="molGridView-tab" data-bs-toggle="tab" href="#molGridView" role="tab" aria-controls="molGridView"
+        aria-selected="false">Grid View</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="moleculesTabsContent">
+    <div class="tab-pane fade show active" id="molListView" role="tabpanel" aria-labelledby="molListView-tab">
+      {% include 'molecules/_mols_ppties_table.html' %}
+    </div>
+    <div class="tab-pane fade" id="molGridView" role="tabpanel" aria-labelledby="molGridView-tab">
+      {% include 'molecules/_mols_ppties_grid.html' %}
+    </div>
+  </div>
+{% endblock content %}
+<!--
+  {% include 'molecules/_mols_ppties_table.html' with mols_ppties_headers=mols_ppties_headers %}
+-->

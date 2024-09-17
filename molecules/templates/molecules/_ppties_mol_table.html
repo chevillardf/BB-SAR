@@ -1,0 +1,164 @@
+{% load static %}
+{% load custom_filters %}
+
+<ul class="nav nav-tabs" id="myTabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="invitro-tab" data-bs-toggle="tab" href="#invitro" role="tab" aria-controls="invitro"
+      aria-selected="true">Main Properties</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="bbCoverage-tab" data-bs-toggle="tab" href="#bbCoverage" role="tab" aria-controls="bbCoverage"
+      aria-selected="false">BBs Coverage</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="invivo-tab" data-bs-toggle="tab" href="#invivo" role="tab" aria-controls="invivo"
+      aria-selected="false">Secondary Properties</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabsContent">
+  <div class="tab-pane fade show active" id="invitro" role="tabpanel" aria-labelledby="invitro-tab">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Value</th>
+              <th scope="col">Suggestions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ppty in ppties_main_left_mol_tab %}
+              <tr>
+                <td>{{ ppty }}</td>
+                <td style="background-color: {{ mol|get_attr:ppty|color_for_property:ppty }}">{{ mol|get_attr:ppty }}</td>
+                <td><a href="{% url 'suggested_molecules' mol_id=mol.mol_id property=ppty%}">Suggest</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Value</th>
+              <th scope="col">Suggestions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ppty in ppties_main_right_mol_tab %}
+              <tr>
+                <td>{{ ppty }}</td>
+                <td style="background-color: {{ mol|get_attr:ppty|color_for_property:ppty }}">{{ mol|get_attr:ppty }}</td>
+                <td><a href="{% url 'suggested_molecules' mol_id=mol.mol_id property=ppty%}">Suggest</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Tab BB coverage -->
+  <div class="tab-content" id="myTabsContent">
+    <div class="tab-pane fade" id="bbCoverage" role="tabpanel" aria-labelledby="bbCoverage-tab">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Property</th>
+                <th scope="col">{{bbs.0.bb_id}}</th>
+                <th scope="col">{{bbs.1.bb_id}}</th>
+                <th scope="col">{{bbs.2.bb_id}}</th>
+                <th scope="col">{{bbs.3.bb_id}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ppty in ppties_main_left_mol_tab %}
+                <tr>
+                  <td>{{ ppty }}</td>
+                  <td style="background-color: {{ bbs.0|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.0|get_attr_with_count:ppty}}</td>
+                  <td style="background-color: {{ bbs.1|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.1|get_attr_with_count:ppty}}</td>
+                  <td style="background-color: {{ bbs.2|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.2|get_attr_with_count:ppty}}</td>
+                  <td style="background-color: {{ bbs.3|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.3|get_attr_with_count:ppty}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Property</th>
+                <th scope="col">{{bbs.0.bb_id}}</th>
+                <th scope="col">{{bbs.1.bb_id}}</th>
+                <th scope="col">{{bbs.2.bb_id}}</th>
+                <th scope="col">{{bbs.3.bb_id}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ppty in ppties_main_right_mol_tab %}
+                <tr>
+                  <td>{{ ppty }}</td>
+                  <td style="background-color: {{ bbs.0|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.0|get_attr_with_count:ppty}}</td>
+                  <td style="background-color: {{ bbs.1|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.1|get_attr_with_count:ppty}}</td>
+                  <td style="background-color: {{ bbs.2|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.2|get_attr_with_count:ppty}}</td>
+                  <td style="background-color: {{ bbs.3|get_attr_with_count:ppty|color_for_property:'bb_count' }};">{{bbs.3|get_attr_with_count:ppty}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Tab 3 -->
+  <div class="tab-pane fade" id="invivo" role="tabpanel" aria-labelledby="invivo-tab">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Value</th>
+              <th scope="col">Suggestions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ppty in ppties_2ndary_left_mol_tab %}
+            <tr>
+              <td>{{ ppty }}</td>
+              <td>{{ mol|get_attr:ppty }}</td>
+              <td><a href="{% url 'suggested_molecules' mol_id=mol.mol_id property=ppty%}">Suggest</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Value</th>
+              <th scope="col">Suggestions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ppty in ppties_2ndary_right_mol_tab %}
+            <tr>
+              <td>{{ ppty }}</td>
+              <td>{{ mol|get_attr:ppty }}</td>
+              <td><a href="{% url 'suggested_molecules' mol_id=mol.mol_id property=ppty%}">Suggest</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

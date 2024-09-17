@@ -1,0 +1,34 @@
+v0.4 [ongoing]
+- Reworked project_home
+- Added bar - series1 set
+- Added DORA - Lactam set
+- Updated templates (mol, bb) so app can handle 3 BBs containing series
+- Updated plots, combos and MMPs so app can handle 3 BBs containing series
+- Fixed top50 for mols_home if no filtering
+- Added min_data_points to boxPlot form as filtering option
+- Fixed various bugs around MMPs scoring
+- Added rank for BB
+
+v.03
+- Multiproject support implemented. Welcome foo data.
+- Added session: Project - Series
+- Updated all queries according to the defined session
+- Added swarmPlot to for duo/property analysis
+- Added Design: 1BB-based suggestions of non existing mols is available
+- Added BPI (balanced permeability index)
+- Added mols/bbs filters on main properties
+
+v0.2
+- Added MMPs support: for a given bb_id quickly identify outperforming replacement.
+- Unified bbs_home view with filter + results.
+- Unified molecules_home view with filter + results.
+- Added BB coverage in mol_home: this allow to quickly identify bb_id not tested in a given assay.
+- Added bbs ppties statistics to BB model.
+- Added trio link to bb_home: for a given property and bb_id display all trio that were not synthesized that could improve the property.
+- Added mol_flag to display stereochemistry flags
+- BB are now defined via rules (EL) and are no more manually added. The bb_id is thus new.
+- Data is now fetch via Osiris directly (IG) to accelerate data processing.
+
+v0.1
+- Added count/zone to box plots.
+- Added substructure search using 2D depiction container from openmolecules.org.

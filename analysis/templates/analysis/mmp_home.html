@@ -1,0 +1,59 @@
+{% extends "projects/base.html" %}
+{% load custom_filters %}
+{% block content %}
+<div class="article-metadata">
+  <h1 class="mr-2">{{property}} MMPs for {{bb_ids.0}} and {{bb_ids.1}}</h1>
+</div>
+<div class="media-body">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <a href="{% url 'bb_home' bb_ids.0 %}"><img src="/media/bbs/{{project_name}}/{{series_name}}/{{bb_ids.0}}.svg" width="100%"></a>
+      {{bb_ids.0}}
+      <hr>
+      <a href="{% url 'bb_home' bb_ids.1 %}"><img src="/media/bbs/{{project_name}}/{{series_name}}/{{bb_ids.1}}.svg" width="100%"></a>
+      {{bb_ids.1}}
+      <hr>
+    </div>
+    <div class="col-md-10">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="plot1-tab" data-bs-toggle="tab" href="#plot1" role="tab" aria-controls="plot1" aria-selected="true">Rel Plot</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="plot2-tab" data-bs-toggle="tab" href="#plot2" role="tab" aria-controls="plot2" aria-selected="false">Bar Plot</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="plot1" role="tabpanel" aria-labelledby="plot1-tab">
+          <img src="/media/plots/relplot.svg" width="100%">
+        </div>
+        <div class="tab-pane fade" id="plot2" role="tabpanel" aria-labelledby="plot2-tab">
+          <img src="/media/plots/barplot.svg" width="100%">
+        </div>
+    </div>
+    </div>
+  </div>
+  <hr>
+  <table class="table table-hover" id="molsPptiesTable">
+    <thead>
+      <tr>
+        {% for header in headers %}
+          <th scope="col">{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in df.itertuples %}
+        <tr>
+          <td>{{ b.combo }}</td>
+          <td style="background-color: {{ b|get_attr:property_bb1_id|color_for_property:property }};">{{ b|get_attr:property_bb1_id }}</td>
+          <td style="background-color: {{ b|get_attr:property_bb2_id|color_for_property:property }};">{{ b|get_attr:property_bb2_id }}</td>
+          <td>{{ b.Fold_Change }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

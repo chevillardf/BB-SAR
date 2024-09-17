@@ -1,0 +1,14 @@
+{% extends "projects/base.html" %}
+{% block content %}
+{% load custom_filters %}
+
+<div class="article-metadata">
+  <h1 class="mr-2">{{property}}</h1>
+</div>
+<div class="media-body">
+<div class="row mb-3">
+  <div class="col-md-12">
+    {% include 'analysis/_combos_ppty_table.html' %}
+  </div>
+</div>
+{% endblock content %}

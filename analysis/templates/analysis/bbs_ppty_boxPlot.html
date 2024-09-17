@@ -1,0 +1,29 @@
+{% extends "projects/base.html" %}
+{% block content %}
+
+<div class="article-metadata">
+  <h1 class="mr-2">{{property}} distribution for {{n_bbs}} {{bb_tag}} across {{n_mols}} molecules</h1>
+</div>
+<div class="media-body">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="row">
+        <img src="/media/plots/boxplot_{{series_name}}.svg" width="100%">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-md-12">
+  {% include 'bbs/_bbs_ppties_scores_table.html' %}
+  </div>
+</div>
+{% endblock content %}
+
+<!-- TODO: add all ppties next to swarm plot
+<div class="row mb-3">
+  <div class="col-md-12">
+  {% include 'bbs/_bbs_ppty_table.html' %}
+  </div>
+</div>
+-->

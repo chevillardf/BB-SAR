@@ -1,0 +1,34 @@
+{% load static %}
+{% load custom_filters %}
+
+<div class="table-responsive">
+  <table id="molsPptiesTable" class="table table-hover datatable">
+    <thead>
+      <tr>
+        {% for header in bbs_ppties_headers %}
+        <th scope="col" class="sortable">{{ header|safe }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in bbs_ppties_df.itertuples %}
+      <tr>
+        <td>
+          <a href="{% url 'bb_home' b.bb_id %}" data-toggle="tooltip" data-html="true" title="{{b.bb_id}}"
+            class="bb-tooltip-trigger" data-imgsrc='/media/bbs/{{project_name}}/{{series_name}}/{{b.bb_id}}.svg'>{{b.bb_id}}</a>
+        </td>
+        <td>
+          {{b.count}}
+        </td>
+        {% for header in bbs_ppties %}
+          {% with b|get_attr:header as attr_value %}
+            {% with header|cut_suffix:'_median' as header_no_median %}
+            <td class="{{ header }}" style="background-color: {{attr_value|color_for_property:header_no_median}};">{{ attr_value }}</td>
+            {% endwith %}
+          {% endwith %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
