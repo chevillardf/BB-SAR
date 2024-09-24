@@ -9,9 +9,12 @@ import pandas as pd
 def design_home(request):
     project = get_project_series_from_session(request)
     series_name = get_project_series_from_session(request)
+    n_bb_tags = get_project_series_from_session(request)
+    
     if series_name:
         series_name = series_name.series_name
         project = project.project
+        n_bb_tags = n_bb_tags.n_bb_tags
     else:
         return redirect('projects_home')
     

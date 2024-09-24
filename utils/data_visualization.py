@@ -18,7 +18,7 @@ def get_bbs_boxPlot(df, x_ppty, y_ppty, series, x_lim=29.5, y_lim=None):
     df = df.reset_index(drop=True)
     
     if y_ppty in affinity_ppties: # for EC50 when too high
-        y_lim = 5000
+        y_lim = 500
     
     plt.rcParams["figure.figsize"] = [16, 6]
     fig = sns.boxplot(x=x_ppty, y=y_ppty, data=df, color='#3e931f')

@@ -13,11 +13,12 @@ import numpy as np
 def analysis_home(request):
     series_name = get_project_series_from_session(request)
     project = get_project_series_from_session(request)
-    n_bb_tags = get_project_series_from_session(request).n_bb_tags
+    n_bb_tags = get_project_series_from_session(request)
         
     if series_name:
         series_name = series_name.series_name
         project = project.project
+        n_bb_tags = n_bb_tags.n_bb_tags
     else:
         return redirect('projects_home')
     
