@@ -89,7 +89,13 @@ def generate_combos(request):
         bb_combo_df = bb_combo_df[filt]
 
     if excluded_bb_id:
-        pass
+        if ',' in excluded_bb_id:
+            excluded_bb_ids = excluded_bb_id.split(',') if ',' in excluded_bb_id else [excluded_bb_id]
+            excluded_bb_ids = [bb_id.strip() for bb_id in excluded_bb_ids]
+            filt = bb_combo_df['bbs_combo'].apply(lambda x: any(bb in x for bb in excluded_bb_ids))
+        else:
+            filt = bb_combo_df['bbs_combo'].apply(lambda x: excluded_bb_id in x)
+        bb_combo_df = bb_combo_df[~filt]
 
     # remove already existing mols
     if bb_id:
