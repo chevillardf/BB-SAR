@@ -49,6 +49,9 @@ def generate_combos(request):
     combo = request.GET.get('combo') or request.POST.get('combo')
     property = request.GET.get('property') or request.POST.get('property')
     bb_id = request.GET.get('bb_id')
+    included_bb_id = request.POST.get('included_bb_id')
+    excluded_bb_id = request.POST.get('excluded_bb_id')
+    
     bb_letter = bb_id[0] if bb_id else None
     if n_bb_tags == 4:
         all_bbs = ['A', 'B', 'C', 'D']
@@ -75,6 +78,13 @@ def generate_combos(request):
     
     filt = bb_combo_df['bbs_combo'].apply(lambda combo: combo_contains_all_tags(combo, remaining_bbs))
     bb_combo_df = bb_combo_df[filt]
+    
+    if included_bb_id:
+        filt = bb_combo_df['bbs_combo'].apply(lambda x: included_bb_id in x)
+        bb_combo_df = bb_combo_df[filt]
+
+    if excluded_bb_id:
+        pass
 
     # remove already existing mols
     if bb_id:
