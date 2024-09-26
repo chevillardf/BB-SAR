@@ -27,7 +27,8 @@ def design_home(request):
         'properties': properties, 
         'combos': combos,
         'series_name':series_name,
-        'project_name':project
+        'project_name':project,
+        'n_bb_tags':n_bb_tags
     }
 
     return render(request, 'design/design_home.html', context)
