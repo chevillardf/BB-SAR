@@ -80,7 +80,12 @@ def generate_combos(request):
     bb_combo_df = bb_combo_df[filt]
     
     if included_bb_id:
-        filt = bb_combo_df['bbs_combo'].apply(lambda x: included_bb_id in x)
+        if ',' in included_bb_id:
+            included_bb_ids = included_bb_id.split(',') if ',' in included_bb_id else [included_bb_id]
+            included_bb_ids = [bb_id.strip() for bb_id in included_bb_ids]
+            filt = bb_combo_df['bbs_combo'].apply(lambda x: any(bb in x for bb in included_bb_ids))
+        else:
+            filt = bb_combo_df['bbs_combo'].apply(lambda x: included_bb_id in x)
         bb_combo_df = bb_combo_df[filt]
 
     if excluded_bb_id:
