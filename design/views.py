@@ -96,7 +96,7 @@ def design_new_mols(request):
     context = {
         'property': property,
         'bb_id':bb_id,
-        'accuracy_mode':accuracy_mode,
+        'design_new_mols':design_new_mols,
         'bb_combo_df':bb_combo_df,
         'series_name':series_name,
         'project_name':project

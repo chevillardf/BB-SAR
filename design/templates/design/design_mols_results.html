@@ -3,7 +3,11 @@
 {% load custom_filters %}
 
 <div class="article-metadata">
+  {% if design_new_mols == 'true' %}
   <h1 class="mr-2">Non existing molecules with {{bb_id}} to improve {{property}}</h1>
+  {% else %}
+  <h1 class="mr-2">Existing molecules with {{bb_id}} to improve {{property}}</h1>
+  {% endif %}
 </div>
 <div class="row mb-3">
   <div class="col-md-12">
