@@ -87,7 +87,22 @@ def design_new_mols(request):
             filt = bb_combo_df['bb_ids'].apply(does_combination_exist)
             bb_combo_df = bb_combo_df[~filt]
     elif filled_count == 2:
-        pass
+        bb_tags = []
+        for filled_field_name, filled_value in filled_fields.items():
+            bb_tags.append(filled_field_name[0])
+            bb_id = bb_tags[0]+filled_value
+        
+        remaining_bbs = [bb for bb in all_bb_tags if bb not in bb_tags]
+        if n_bb_tags == 4:
+            bb_combo_df = get_bb_combo(2, all_bb_ids, df, property)
+        elif n_bb_tags == 3: #TODO: show singleton (nothing appears in combo now)
+            bb_combo_df = get_bb_combo(1, all_bb_ids, df, property)
+        filt = bb_combo_df['bbs_combo'].apply(lambda combo: combo_contains_all_tags(combo, remaining_bbs))
+        bb_combo_df = bb_combo_df[filt]
+        bb_combo_df['bb_ids'] = bb_combo_df['bbs_combo'].apply(lambda x: combine_with_bb_id(x, bb_id))
+        if design_new_mols == 'true':
+            filt = bb_combo_df['bb_ids'].apply(does_combination_exist)
+            bb_combo_df = bb_combo_df[~filt]
     elif filled_count == 3:
         pass
     else:
