@@ -41,6 +41,8 @@ def design_new_mols(request):
     else:
         return redirect('projects_home')
     
+    design_new_mols = request.POST.get('design_new_mols')
+    
     bb_fields = {
         'A_id': request.POST.get('A_id') or request.GET.get('A_id'),
         'B_id': request.POST.get('B_id') or request.GET.get('B_id'),
@@ -51,7 +53,7 @@ def design_new_mols(request):
     if n_bb_tags == 4:
         bb_fields['D_id'] = request.POST.get('D_id') or request.GET.get('D_id')
         all_bb_tags.append('D')
-    #TODO: You stopped here    
+        
     filled_fields = {key: value for key, value in bb_fields.items() if value}
     filled_count = len(filled_fields)
     property = request.POST.get('property') or request.GET.get('property')
@@ -81,6 +83,7 @@ def design_new_mols(request):
         filt = bb_combo_df['bbs_combo'].apply(lambda combo: combo_contains_all_tags(combo, remaining_bbs))
         bb_combo_df = bb_combo_df[filt]
         bb_combo_df['bb_ids'] = bb_combo_df['bbs_combo'].apply(lambda x: combine_with_bb_id(x, bb_id))
+        print(design_new_mols)
         filt = bb_combo_df['bb_ids'].apply(does_combination_exist)
         bb_combo_df = bb_combo_df[~filt]
     elif filled_count == 2:
