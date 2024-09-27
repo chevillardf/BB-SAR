@@ -72,13 +72,14 @@
           <div class="row mb-3">
             <div class="col-md-1"></div>
             <div class="col-md-5">
+              <input type="hidden" name="design_new_mols" id="design_new_mols" value="">
               <div class="input-group rounded-0 mt-2">
-                <input type="submit" value="Design new compounds" class="btn btn-primary w-100">
+                <input type="submit" value="Design new compounds" class="btn btn-primary w-100" onclick="document.getElementById('design_new_mols').value='true';">
               </div>
             </div>
             <div class="col-md-5">
               <div class="input-group rounded-0 mt-2">
-                <input type="submit" value="Test existing compounds" class="btn btn-primary w-100 disabled">
+                <input type="submit" value="Test existing compounds" class="btn btn-primary w-100" onclick="document.getElementById('design_new_mols').value='false';">
               </div>
             </div>
             <div class="col-md-1"></div>

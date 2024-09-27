@@ -83,9 +83,9 @@ def design_new_mols(request):
         filt = bb_combo_df['bbs_combo'].apply(lambda combo: combo_contains_all_tags(combo, remaining_bbs))
         bb_combo_df = bb_combo_df[filt]
         bb_combo_df['bb_ids'] = bb_combo_df['bbs_combo'].apply(lambda x: combine_with_bb_id(x, bb_id))
-        print(design_new_mols)
-        filt = bb_combo_df['bb_ids'].apply(does_combination_exist)
-        bb_combo_df = bb_combo_df[~filt]
+        if design_new_mols == 'true':
+            filt = bb_combo_df['bb_ids'].apply(does_combination_exist)
+            bb_combo_df = bb_combo_df[~filt]
     elif filled_count == 2:
         pass
     elif filled_count == 3:
