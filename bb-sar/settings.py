@@ -132,7 +132,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-SITE_PASSWORD = 'bbsar2024'
+SITE_PASSWORD = 'yourPassword' # Change your password if you want one
 
 # Global variables
 
