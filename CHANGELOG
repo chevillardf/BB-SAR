@@ -1,6 +1,6 @@
 v0.4 [ongoing]
 - Reworked project_home
-- Analysys Combos now has adv. search options with bb_id to include or exclude
+- Added advanced search options with bb_id to include or exclude in the combos module
 - Added DORA - Lactam set
 - Updated templates (mol, bb) so app can handle 3 BBs containing series
 - Updated plots, combos and MMPs so app can handle 3 BBs containing series
