@@ -25,3 +25,7 @@ conda activate py39
 ```
 python manage.py runserver
 ```
+
+### Windows
+Install anaconda by following the instructions here: https://docs.anaconda.com/anaconda/install/windows/
+
