@@ -17,8 +17,8 @@ cd BB-SAR
 
 #### Create and activate the conda environment
 ```
-conda env create -f data/py39.yml
-conda activate py39
+conda env create -f data/py310.yml
+conda activate py310
 ```
 
 #### Start the application
@@ -28,4 +28,4 @@ python manage.py runserver
 
 ### Windows
 Install anaconda by following the instructions here: https://docs.anaconda.com/anaconda/install/windows/
-
+Start Anaconda power shell and apply the same logic as Linux installation
