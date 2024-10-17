@@ -26,6 +26,10 @@ conda activate py310
 python manage.py runserver
 ```
 
+#### Access the webapp
+Open your web browser and go to http://127.0.0.1:8008/
+Password = yourPassword
+
 ### Windows
 Install anaconda by following the instructions here: https://docs.anaconda.com/anaconda/install/windows/
 Start Anaconda power shell and apply the same logic as Linux installation
