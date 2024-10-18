@@ -31,5 +31,5 @@ python manage.py runserver
 - Password = yourPassword (can be edited in bb-sar/settings.y)
 
 ### Windows
-Install anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/)
-Start Anaconda power shell and apply the same logic as Linux installation
+- Install anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/)
+- Start Anaconda power shell and apply the same logic as Linux installation
