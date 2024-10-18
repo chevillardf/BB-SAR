@@ -27,9 +27,9 @@ python manage.py runserver
 ```
 
 #### Access the webapp
-Open your web browser and go to http://127.0.0.1:8008/
-Password = yourPassword
+- Open your web browser and go to http://127.0.0.1:8008/
+- Password = yourPassword (can be edited in bb-sar/settings.y)
 
 ### Windows
-Install anaconda by following the instructions here: https://docs.anaconda.com/anaconda/install/windows/
+Install anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/)
 Start Anaconda power shell and apply the same logic as Linux installation
