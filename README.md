@@ -43,6 +43,6 @@ python manage.py runserver
 
 ### Windows
 - Install Anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/).
+- Start Anaconda PowerShell and apply the same logic as Linux installation.
 
 ## Upload your dataset
-- Start Anaconda PowerShell and apply the same logic as Linux installation.
