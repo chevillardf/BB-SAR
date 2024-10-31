@@ -45,4 +45,6 @@ python manage.py runserver
 - Install Anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/).
 - Start Anaconda PowerShell and apply the same logic as Linux installation.
 
-## Upload your dataset
+## How to use your own dataset
+### Fragment the chemical series into BBs
+### Upload your dataset to the web app
