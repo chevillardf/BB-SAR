@@ -1,11 +1,11 @@
 # BB-SAR
 
-**BB-SAR** is a web application designed for analyzing structure-activity relationships (SAR) at the building block (BB) level. It facilitates data-driven decision-making in medicinal chemistry projects by focusing on a defined chemical series.
+**BB-SAR** is a web application designed for analyzing structure-activity relationships (SAR) at the building block (BB) level. It facilitates data-driven decision-making in medicinal chemistry projects by focusing on a defined **chemical series**.
 
 ## Features
-- Analyzes molecular properties using building blocks (BBs)
-- Simplifies the data complexity and helps identify trends between molecular features and properties
-- Provides an intuitive interface for medicinal chemists
+- Analyzes biological/physicochemical properties from the BB perspective.
+- Simplifies the data complexity and helps identify trends between molecular features and properties.
+- Provides an intuitive interface for medicinal chemists.
 
 ## License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
@@ -47,4 +47,5 @@ python manage.py runserver
 
 ## How to use your own dataset
 ### Fragment the chemical series into BBs
+- You can use the jupyter notebook of the Lactam series [here](https://github.com/chevillardf/BB-SAR/blob/master/data/format_DORA_Lactam_bbs.ipynb) as template to fragment your own chemical series.
 ### Upload your dataset to the web app
