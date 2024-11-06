@@ -3,9 +3,9 @@
 **BB-SAR** is a web application designed for analyzing structure-activity relationships (SAR) at the building block (BB) level. It facilitates data-driven decision-making in medicinal chemistry projects by focusing on a defined **chemical series**.
 
 ## Features
-- Analyzes biological/physicochemical properties from the BB perspective.
-- Simplifies the data complexity and helps identify trends between molecular features and properties.
-- Provides an intuitive interface for medicinal chemists.
+- :mag: Analyzes biological/physicochemical properties from the BB perspective.
+- :bar_chart: Simplifies the data complexity and helps identify trends between molecular features and properties.
+- :sparkles: Provides an intuitive interface for medicinal chemists.
 
 ## License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
