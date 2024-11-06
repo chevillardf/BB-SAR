@@ -49,3 +49,4 @@ python manage.py runserver
 ### Fragment the chemical series into BBs
 - You can use the jupyter notebook of the Lactam series [here](https://github.com/chevillardf/BB-SAR/blob/master/data/format_DORA_Lactam_bbs.ipynb) as template to fragment your own chemical series.
 ### Upload your dataset to the web app
+This part should be done by a proficient django developer, as adding your own chemical series will require to edit several files.
