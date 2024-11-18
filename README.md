@@ -1,5 +1,6 @@
 # BB-SAR
-[![Python](https://img.shields.io/badge/any_text-you_like-blue)]
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+
 **BB-SAR** is a web application designed for analyzing structure-activity relationships (SAR) at the building block (BB) level. It facilitates data-driven decision-making in medicinal chemistry projects by focusing on a defined **chemical series**.
 
 ## Features
