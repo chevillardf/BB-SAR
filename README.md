@@ -58,3 +58,5 @@ This part should be done by a proficient django developer, as adding your own ch
 - data/projects.json
 - projects/management/commands/update_project_series.py
 - utils/proj_settings
+
+## Utilisation
