@@ -4,6 +4,13 @@
 
 **BB-SAR** is a web application designed for analyzing structure-activity relationships (SAR) at the building block (BB) level. It facilitates data-driven decision-making in medicinal chemistry projects by focusing on a defined **chemical series**.
 
+## Table of Contents
+
+- [Features](#features)
+- [License](#license)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+  
 ## Features
 - :mag: Analyzes biological/physicochemical properties from the BB perspective.
 - :bar_chart: Simplifies the data complexity and helps identify trends between molecular features and properties.
@@ -47,7 +54,7 @@ python manage.py runserver
 - Install Anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/).
 - Start Anaconda PowerShell and apply the same logic as Linux installation.
 
-## How to use your own dataset
+## Utilisation
 ### Fragment the chemical series into BBs
 - You can use the jupyter notebook of the Lactam series [here](https://github.com/chevillardf/BB-SAR/blob/master/data/format_DORA_Lactam_bbs.ipynb) as template to fragment your own chemical series.
 - Format the columns headers so they fit the current Molecules and BBs Models.
