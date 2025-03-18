@@ -16,4 +16,28 @@ dependencies:
   - wheel
   - xz
   - pip:
-      - asgiref==3.8.1
+      - asgiref
+      - contourpy
+      - cycler
+      - django
+      - djangorestframework
+      - fonttools
+      - kiwisolver
+      - matplotlib
+      - numpy
+      - packaging
+      - pandas
+      - pillow
+      - pyparsing
+      - python-dateutil
+      - pytz
+      - rdkit
+      - seaborn
+      - six
+      - sqlparse
+      - typing-extensions
+      - tzdata
+  # Windows-specific packages (uncomment if needed):
+  # - vs2015_runtime  # Visual Studio 2015 runtime
+  # - ucrt           # Universal C Runtime
+
