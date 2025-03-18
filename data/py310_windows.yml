@@ -1,0 +1,21 @@
+name: py310
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - bzip2
+  - ca-certificates
+  - libffi
+  - libsqlite
+  - libzlib
+  - openssl
+  - pip
+  - python=3.10
+  - setuptools
+  - tk
+  - wheel
+  - xz
+  - vs2015_runtime
+  - ucrt
+  - pip:
+      - asgiref==3.8.1
