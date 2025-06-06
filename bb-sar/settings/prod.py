@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['bb-sar.onrender.com']
 
 # Where static files are collected by collectstatic
