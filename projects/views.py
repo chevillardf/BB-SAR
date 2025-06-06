@@ -32,12 +32,3 @@ def set_series(request, series_id):
     request.session['current_series_name'] = series.series_name
 
     return redirect('projects_home')
-
-def password_login(request):
-    if request.method == 'POST':
-        password = request.POST.get('password')
-        if password == settings.SITE_PASSWORD:
-            request.session['is_authenticated'] = True
-            return redirect('projects_home')
-
-    return render(request, 'projects/pw_login.html')
