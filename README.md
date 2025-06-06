@@ -4,7 +4,7 @@
 
 **BB-SAR** is a web application designed for analyzing structure-activity relationships (SAR) at the building block (BB) level. It facilitates data-driven decision-making in medicinal chemistry projects by focusing on a defined **chemical series**.
 
-For a detailed explanation of the BB-SAR method and its applications in medicinal chemistry, please refer to our published article: https://pubs.acs.org/doi/10.1021/acs.jcim.4c02121
+For a detailed explanation of the BB-SAR method and its applications in medicinal chemistry, please refer to the [article](https://pubs.acs.org/doi/10.1021/acs.jcim.4c02121)
 
 The minimal webapp demo can be accessed [on render](https://bb-sar.onrender.com)
 
