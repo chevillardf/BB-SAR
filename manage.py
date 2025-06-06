@@ -5,7 +5,10 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bb-sar.settings')
+    if 'runserver' in sys.argv or 'shell' in sys.argv or 'migrate' in sys.argv:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bb-sar.settings.dev')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bb-sar.settings.prod')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
