@@ -13,10 +13,12 @@ pillow
 pyparsing
 python-dateutil
 pytz
-rdkit-pypi
 seaborn
 six
 sqlparse
 typing-extensions
 tzdata
 gunicorn
+rdkit==2023.03.1
+whitenoise
+
