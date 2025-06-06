@@ -6,6 +6,8 @@
 
 For a detailed explanation of the BB-SAR method and its applications in medicinal chemistry, please refer to our published article: https://pubs.acs.org/doi/10.1021/acs.jcim.4c02121
 
+The minimal webapp demo can be accessed [on render](https://bb-sar.onrender.com)
+
 ![bb-sar_toc](https://github.com/user-attachments/assets/5ea529d9-af3b-4741-89b9-56e804bad3a7)
 
 ## Table of Contents
