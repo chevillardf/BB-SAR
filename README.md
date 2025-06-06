@@ -52,7 +52,6 @@ python manage.py runserver
 
 #### 4. Access the web app
 - Open your web browser and go to [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- Default Password: `yourPassword` (can be edited in `bb-sar/settings.py`)
 
 ### Windows
 - Install Anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/).
