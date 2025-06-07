@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import io
 import pandas as pd
 import seaborn as sns
 import numpy as np
@@ -88,11 +89,19 @@ def get_duo_swarmPlot(df, y_ppty, bb_id, bb_duo_tag):
     fig = sns.swarmplot(data=df, x=bb_tag+'_id', y=y_ppty, hue=bb_duo_tag+"_id", s=15)
     fig.set_xlabel('')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., fontsize=16, markerscale=1, ncol=1)
-    p = fig.get_figure()
-    p.savefig("media/plots/swarmplot_duo_"+bb_duo_tag+".svg", dpi=300, bbox_inches='tight', pad_inches=0)
-    plt.close()
+    
+    # save the picture on disk
+    fig.get_figure().savefig("media/plots/swarmplot_duo_"+bb_duo_tag+".svg", dpi=300, bbox_inches='tight', pad_inches=0)
     
     return None
+    """
+    # save the picture in memory
+    buf = io.BytesIO()
+    fig.get_figure().savefig(buf, format='png', dpi=300, bbox_inches='tight', pad_inches=0)
+    buf.seek(0)
+    plt.close()
+    return buf
+    """
 
 def plot_mmps_ppty_relPlot(df, bb_tag, ppty):
     palette = ['#541471', '#D90373']
