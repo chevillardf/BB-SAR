@@ -1,4 +1,5 @@
-v0.4 [ongoing]
+v0.4
+- Added requirements.txt + py311 for production on render
 - Reworked project_home
 - Added advanced search options with bb_id to include or exclude in the combos module
 - Added DORA - Lactam set
