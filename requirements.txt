@@ -6,7 +6,6 @@ djangorestframework==3.16.0
 fonttools==4.58.2
 gunicorn==23.0.0
 kiwisolver==1.4.8
-latest==0.6.0
 matplotlib==3.10.3
 numpy==2.2.6
 packaging==25.0
