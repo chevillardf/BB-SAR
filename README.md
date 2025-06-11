@@ -43,8 +43,8 @@ cd BB-SAR
 
 #### 2. Create and activate the conda environment
 ```bash
-conda env create -f data/py310.yml
-conda activate py310
+conda env create -f data/py311.yml
+conda activate py311
 ```
 
 #### 3. Start the application
