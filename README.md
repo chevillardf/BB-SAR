@@ -13,17 +13,14 @@ The minimal webapp demo can be accessed [on render](https://bb-sar.onrender.com)
 ## Table of Contents
 
 - [Features](#features)
-- [License](#license)
 - [Installation](#installation)
 - [Utilisation](#utilisation)
+- [License](#license)
   
 ## Features
 - :mag: Analyzes biological/physicochemical properties from the BB perspective.
 - :bar_chart: Simplifies the data complexity and helps identify trends between molecular features and properties.
 - :sparkles: Provides an intuitive interface for medicinal chemists.
-
-## License
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
 
 ## Installation
 
@@ -61,3 +58,7 @@ python manage.py runserver
 
 ## Utilisation
 For detailed usage instructions, see the [User Manual](./MANUAL.md). 
+
+## License
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
