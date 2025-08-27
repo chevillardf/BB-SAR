@@ -60,5 +60,4 @@ python manage.py runserver
 For detailed usage instructions, see the [User Manual](./MANUAL.md). 
 
 ## License
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
