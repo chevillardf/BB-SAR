@@ -59,8 +59,11 @@ python manage.py runserver
 - Install Anaconda by following the instructions [here](https://docs.anaconda.com/anaconda/install/windows/).
 - Start Anaconda PowerShell and apply the same logic as Linux installation.
 
-## Utilisation
-For detailed usage instructions, see the [User Manual](./MANUAL.md). 
+## Quick start
+### Online Demo
+Try BB-SAR immediately without installing anything: [Launch demo on render](https://bb-sar.onrender.com)
+### Local Install
+After installation, you can run the app locally and explore example datasets (see the [User Manual](./MANUAL.md).)
 
 ## License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
