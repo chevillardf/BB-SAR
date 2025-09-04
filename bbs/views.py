@@ -155,12 +155,14 @@ def bb_home(request, bb_id):
     return render(request, 'bbs/bb_home.html', context)
 
 @swagger_auto_schema(
-        method='get', 
+        method='get',
+        operation_summary="Query BB properties",
+        operation_description="Returns potency, HLM, and CYP_testo statistics (count, median, rank, score) for a given SMILES building block. The SMILES must match exactly one building block in the database."
         manual_parameters=[openapi.Parameter('smi', openapi.IN_QUERY, description="SMILES string", type=openapi.TYPE_STRING)],
         responses={
         200: BBSerializer,
         400: 'No SMILES provided',
-        404: 'BB not found'
+        404: 'BB not found',
     }
 )
 
