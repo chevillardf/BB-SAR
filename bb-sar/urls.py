@@ -29,8 +29,8 @@ schema_view = get_schema_view(
         'smi', openapi.IN_QUERY,
         description="SMILES string of the building block. Must match exactly one BB in the database.",
         type=openapi.TYPE_STRING,
-        required=True
-    ,)
+        required=True,
+    ),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
