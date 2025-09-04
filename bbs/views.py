@@ -19,6 +19,9 @@ from utils.df_analysis import describe_bb_ppties_df
 from utils.mol_operations import has_substr
 from utils.proj_settings import mols_ppties_headers_project, mols_ppties_project, bbs_ppties_header_project, ppties_bb_rows_project,bbs_ppties_project
 from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import BBSerializer
 import pandas as pd
 import numpy as np
 
@@ -148,3 +151,17 @@ def bb_home(request, bb_id):
         'project_name':project
     }
     return render(request, 'bbs/bb_home.html', context)
+
+
+@api_view(['GET'])
+def bb_query(request):
+    smiles = request.GET.get('bb_smi')
+    if not smiles:
+        return Response({"error": "No SMILES provided"}, status=400)
+    
+    try:
+        bb = BB.objects.get(bb_smi=smiles)
+        serializer = BBSerializer(bb)
+        return Response(serializer.data)
+    except BB.DoesNotExist:
+        return Response({"error": "BB not found"}, status=404)
