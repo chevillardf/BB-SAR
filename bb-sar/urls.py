@@ -20,13 +20,19 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="BB-SAR API",
-      default_version='v1',
-      description="API to query building block properties by SMILES",
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="BB-SAR API",
+        default_version='v1',
+        description="API to query building block properties by SMILES",
+    ),
+    openapi.Parameter(
+        'smi', openapi.IN_QUERY,
+        description="SMILES string of the building block. Must match exactly one BB in the database.",
+        type=openapi.TYPE_STRING,
+        required=True
+    ,)
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [

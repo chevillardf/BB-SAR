@@ -154,9 +154,15 @@ def bb_home(request, bb_id):
     }
     return render(request, 'bbs/bb_home.html', context)
 
-@swagger_auto_schema(method='get', manual_parameters=[
-    openapi.Parameter('smi', openapi.IN_QUERY, description="SMILES string", type=openapi.TYPE_STRING)
-])
+@swagger_auto_schema(
+        method='get', 
+        manual_parameters=[openapi.Parameter('smi', openapi.IN_QUERY, description="SMILES string", type=openapi.TYPE_STRING)],
+        responses={
+        200: BBSerializer,
+        400: 'No SMILES provided',
+        404: 'BB not found'
+    }
+)
 
 @api_view(['GET'])
 def bb_query(request):
