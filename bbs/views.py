@@ -21,6 +21,7 @@ from utils.proj_settings import mols_ppties_headers_project, mols_ppties_project
 from django.db.models import Q
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from drf_yasg.utils import swagger_auto_schema
 from .serializers import BBSerializer
 import pandas as pd
 import numpy as np
@@ -152,6 +153,9 @@ def bb_home(request, bb_id):
     }
     return render(request, 'bbs/bb_home.html', context)
 
+@swagger_auto_schema(method='get', manual_parameters=[
+    openapi.Parameter('smi', openapi.IN_QUERY, description="SMILES string", type=openapi.TYPE_STRING)
+])
 
 @api_view(['GET'])
 def bb_query(request):
